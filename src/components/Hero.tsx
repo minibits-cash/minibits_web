@@ -158,7 +158,7 @@ export default function Hero() {
         {/*<div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-zinc-950 to-transparent z-10" />*/}
 
         {/* Content */}
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-6 pb-20 pt-0 lg:flex-row lg:items-center xl:px-8">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-6 pb-20 pt-12 lg:pt-0 lg:flex-row lg:items-center xl:px-8">
           {/* Left: text */}
           <div className="flex flex-col max-w-xl shrink-0">
 
