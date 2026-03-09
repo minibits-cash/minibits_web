@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:minibits.cash)",
+      "WebFetch(domain:www.minibits.cash)"
+    ]
+  }
+}

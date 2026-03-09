@@ -1,26 +1,133 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --minibits-green: #599D52;
+  --minibits-blue: #3680FA;
+  --minibits-orange: #f18805;
+  --bg-dark: #09090b;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', 'Karla', sans-serif;
+  color: #171717;
+  background: #ffffff;
 }
+
+/* ---- Animated grid hero background ---- */
+
+.animated-grid-bg {
+  position: relative;
+  background-color: var(--bg-dark);
+  overflow: hidden;
+}
+
+.animated-grid-bg::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(to right, rgba(63, 63, 70, 0.5) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(63, 63, 70, 0.5) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.animated-grid-bg .text-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 40px);
+  grid-template-rows: repeat(auto-fill, 40px);
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: rgba(113, 113, 122, 0.5);
+  z-index: 1;
+}
+
+.animated-grid-bg .text-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.animated-grid-bg .gradient-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(9, 9, 11, 0) 0%,
+    rgba(9, 9, 11, 0) 40%,
+    rgba(9, 9, 11, 0.6) 70%,
+    rgba(9, 9, 11, 0.88) 85%,
+    #09090b 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Subtle colored glow areas in the hero */
+.hero-glow-blue {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(54, 128, 250, 0.12) 0%, transparent 70%);
+  top: -100px;
+  left: -100px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-glow-green {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(89, 157, 82, 0.10) 0%, transparent 70%);
+  bottom: -50px;
+  right: 0px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---- Animations ---- */
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ---- Prose styles for MDX pages ---- */
+
+.prose-minibits {
+  max-width: 65ch;
+  margin: 0 auto;
+  color: #374151;
+  line-height: 1.75;
+}
+
+.prose-minibits h1 { font-size: 2rem; font-weight: 700; color: #111827; margin-bottom: 1.5rem; }
+.prose-minibits h2 { font-size: 1.5rem; font-weight: 600; color: #111827; margin-top: 2rem; margin-bottom: 0.75rem; }
+.prose-minibits h3 { font-size: 1.125rem; font-weight: 600; color: #111827; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.prose-minibits p  { margin-bottom: 1rem; }
+.prose-minibits ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+.prose-minibits li { margin-bottom: 0.25rem; }
+.prose-minibits a  { color: var(--minibits-blue); text-decoration: underline; }

@@ -1,0 +1,151 @@
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+const FOOTER_LINKS = [
+  {
+    heading: "Wallet",
+    links: [
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.minibits_wallet", external: true },
+      { label: "App Store", href: "https://apps.apple.com/us/app/minibits/id6744454479", external: true },
+      { label: "FreedomStore", href: "https://freedomstore.io", external: true },
+      { label: "Zapstore", href: "https://zapstore.dev/apps/com.minibits_wallet", external: true },
+    ],
+  },
+  {
+    heading: "Other services",
+    links: [
+      { label: "Minibits Recovery", href: "https://recovery.minibits.cash", external: true },
+      { label: "Ippon wallet", href: "https://ippon.minibits.cash/v1", external: true },
+      { label: "Ippon wallet MCP", href: "https://ippon.minibits.cash/mcp", external: true },
+    ],
+  },
+  {
+    heading: "Support & Legal",
+    links: [
+      { label: "Contact Support", href: "mailto:support@minibits.cash", external: false },
+      { label: "Privacy Policy", href: "/privacy", external: false },
+      { label: "Terms & Conditions", href: "/terms", external: false },      
+    ],
+  },
+];
+
+export default function Footer() {
+  return (
+    <footer className="border-t border-zinc-200 bg-zinc-900 text-zinc-400">
+      <div className="mx-auto max-w-7xl px-6 py-16 xl:px-8">
+        <div className="grid grid-cols-2 gap-10 lg:grid-cols-4">
+          {/* Brand column */}
+          <div className="col-span-2 lg:col-span-1">
+            <div className="mb-4 flex items-center gap-3">
+              <Image src="/icon-192.png" alt="Minibits" width={32} height={32} className="rounded-lg" />
+              <span
+                className="text-xl leading-none text-zinc-100"
+                style={{ fontFamily: "var(--font-hammersmith)" }}
+              >
+                Minibits
+              </span>
+            </div>
+            <p className="mb-6 text-sm leading-relaxed text-zinc-500">
+            Minibits is a Bitcoin Lightning and ecash wallet plus related projects that deliver instant, low-cost, and private value transfers — even when the payer is offline.
+            </p>
+            {/* Social icons */}
+            <div className="flex gap-3">
+              <a
+                href="https://github.com/minibits-cash/minibits_wallet"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 text-zinc-400 transition hover:border-zinc-500 hover:text-zinc-200"
+                aria-label="GitHub"
+              >
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+              </a>
+              <a
+                href="https://x.com/MinibitsCash"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 text-zinc-400 transition hover:border-zinc-500 hover:text-zinc-200"
+                aria-label="X / Twitter"
+              >
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </a>
+              <a
+                href="https://primal.net/p/nprofile1qqstxwlea9ah3u6kjjszu6a7lrnhqkfh8eptp2z6v0e9558tlkkl2rg20d4vz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 text-zinc-400 transition hover:border-zinc-500 hover:text-zinc-200"
+                aria-label="Nostr"
+              >
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 256 256">
+                  <path d="M128 24C70.562 24 24 70.562 24 128s46.562 104 104 104 104-46.562 104-104S185.438 24 128 24zm47.938 144.656c-2.5 2.656-6.656 2.781-9.313.281l-41.5-39.125v51.5a6.585 6.585 0 0 1-6.594 6.594 6.585 6.585 0 0 1-6.594-6.594V127.5l-41.5 39.125c-2.656 2.5-6.813 2.375-9.313-.281-2.5-2.656-2.375-6.813.281-9.313l52.5-49.5a6.57 6.57 0 0 1 9.031 0l52.5 49.5c2.657 2.5 2.782 6.656.282 9.125z" />
+                </svg>
+              </a>
+              <a
+                href="https://t.me/MinibitsWallet"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 text-zinc-400 transition hover:border-zinc-500 hover:text-zinc-200"
+                aria-label="Telegram"
+              >
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          {/* Link columns */}
+          {FOOTER_LINKS.map((col) => (
+            <div key={col.heading}>
+              <h4 className="mb-4 text-xs font-semibold uppercase tracking-wider text-zinc-300">
+                {col.heading}
+              </h4>
+              <ul className="space-y-3">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    {link.external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-zinc-500 transition hover:text-zinc-200"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-zinc-500 transition hover:text-zinc-200"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom bar */}
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-zinc-800 pt-8 sm:flex-row">
+          <p className="text-xs text-zinc-600">
+            © {new Date().getFullYear()} Bitango Technologies, s.r.o. All rights reserved.
+          </p>
+          {/*<div className="flex gap-4 text-xs text-zinc-600">
+            <Link href="/privacy" className="transition hover:text-zinc-400">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="transition hover:text-zinc-400">
+              Terms &amp; Conditions
+            </Link>
+          </div>*/}
+        </div>
+      </div>
+    </footer>
+  );
+}
