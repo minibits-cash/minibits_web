@@ -223,22 +223,26 @@ export default function Hero() {
           {/* Right: app videos */}
           <div className="hidden shrink-0 lg:flex lg:items-center ml-auto [&>video+video]:-ml-20">
             <video
-              src="/videos/send_scan_token.mov"
               autoPlay
               loop
               muted
               playsInline
               className="h-[640px] w-auto rounded-2xl shadow-2xl"
-            />
+            >
+              <source src="/videos/send_scan_token.mov" type="video/quicktime" />
+              <source src="/videos/send_scan_token.mp4" type="video/mp4" />
+            </video>
             <video
               ref={receiveVideoRef}
-              src="/videos/receive_scan_token.mov"
               autoPlay
               loop
               muted
               playsInline
               className="h-[640px] w-auto rounded-2xl shadow-2xl"
-            />
+            >
+              <source src="/videos/receive_scan_token.mov" type="video/quicktime" />
+              <source src="/videos/receive_scan_token.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </div>
