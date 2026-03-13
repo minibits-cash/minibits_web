@@ -1,16 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { SimplePool } from "nostr-tools/pool";
-import { decode } from "nostr-tools/nip19";
-import type { Event } from "nostr-tools/core";
+import { SimplePool, nip19 } from "nostr-tools";
+import type { Event } from "nostr-tools";
 
 const NPUB = "npub1kvaln6tm0re4d99q9e4ma788wpvnw0jzkz595cljtfgwhldd75xsj9tkzv";
 const RELAYS = ["wss://relay.damus.io", "wss://relay.primal.net"];
 const MAX_POSTS = 5;
 const IMAGE_RE = /https?:\/\/\S+\.(?:jpe?g|png|gif|webp)(?:[?#]\S*)?/gi;
 
-const decoded = decode(NPUB);
+const decoded = nip19.decode(NPUB);
 const HEX_PUBKEY = decoded.data as string;
 
 interface NostrPost {
