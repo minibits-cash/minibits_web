@@ -1,4 +1,42 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import SlideshowImage from "./SlideshowImage";
+
+type Status = "loading" | "operational" | "unavailable";
+
+function StatusDot({ status }: { status: Status }) {
+  const colors: Record<Status, string> = {
+    loading: "bg-yellow-400",
+    operational: "bg-green-400",
+    unavailable: "bg-red-500",
+  };
+  const labels: Record<Status, string> = {
+    loading: "Loading",
+    operational: "Operational",
+    unavailable: "Unavailable",
+  };
+  return (
+    <span className="flex items-center gap-2">
+      <span
+        className={`inline-block h-3 w-3 rounded-full ${colors[status]} ${
+          status === "loading" ? "animate-pulse" : ""
+        }`}
+      />
+      <span
+        className={`text-sm font-semibold ${
+          status === "operational"
+            ? "text-green-600"
+            : status === "loading"
+            ? "text-yellow-600"
+            : "text-red-600"
+        }`}
+      >
+        {labels[status]}
+      </span>
+    </span>
+  );
+}
 
 type WalletCard = {
   title: string;
@@ -35,6 +73,23 @@ const WALLET_CARDS: WalletCard[] = [
 ];
 
 export default function WalletSection() {
+  const [addressServerStatus, setAddressServerStatus] = useState<Status>("loading");
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/address-server-status")
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled) setAddressServerStatus(data.ok ? "operational" : "unavailable");
+      })
+      .catch(() => {
+        if (!cancelled) setAddressServerStatus("unavailable");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <section id="wallet" className="bg-white py-24">
       <div className="mx-auto max-w-7xl px-6 xl:px-8">
@@ -49,6 +104,13 @@ export default function WalletSection() {
             Nostr social networks. More, Minibits delivers true Tap-to-pay experience to
             Bitcoin, combining ecash with NFC - even if payer remains offline.
           </p>
+
+          {/* Status indicator */}
+          <div className="mt-6 inline-flex items-center gap-3 rounded-xl border border-zinc-200 bg-zinc-50 px-5 py-3">
+            <span className="text-sm text-zinc-500 font-medium">minibits.cash address server</span>
+            <span className="text-zinc-300">·</span>
+            <StatusDot status={addressServerStatus} />
+          </div>
         </div>
 
         {/* Feature cards */}
