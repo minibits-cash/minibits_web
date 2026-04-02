@@ -72,6 +72,7 @@ const MINT_CARDS: MintCard[] = [
 
 export default function MintSection() {
   const [status, setStatus] = useState<MintStatus>("loading");
+  const [lndStatus, setLndStatus] = useState<MintStatus>("loading");
 
   useEffect(() => {
     let cancelled = false;
@@ -82,6 +83,14 @@ export default function MintSection() {
       })
       .catch(() => {
         if (!cancelled) setStatus("unavailable");
+      });
+    fetch("/api/lnd-status")
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled) setLndStatus(data.ok ? "operational" : "unavailable");
+      })
+      .catch(() => {
+        if (!cancelled) setLndStatus("unavailable");
       });
     return () => {
       cancelled = true;
@@ -105,10 +114,14 @@ export default function MintSection() {
           </p>
 
           {/* Status indicator */}
-          <div className="inline-flex items-center gap-3 rounded-xl border border-zinc-200 bg-zinc-50 px-5 py-3">
+          <div className="inline-flex flex-wrap items-center gap-3 rounded-xl border border-zinc-200 bg-zinc-50 px-5 py-3">
             <span className="text-sm text-zinc-500 font-medium">mint.minibits.cash</span>
             <span className="text-zinc-300">·</span>
+            <span className="text-xs text-zinc-400">Mint</span>
             <StatusDot status={status} />
+            <span className="text-zinc-300">·</span>
+            <span className="text-xs text-zinc-400">Lightning node</span>
+            <StatusDot status={lndStatus} />
           </div>
         </div>
 
