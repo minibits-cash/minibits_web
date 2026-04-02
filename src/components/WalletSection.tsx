@@ -107,8 +107,9 @@ export default function WalletSection() {
 
           {/* Status indicator */}
           <div className="mt-6 inline-flex items-center gap-3 rounded-xl border border-zinc-200 bg-zinc-50 px-5 py-3">
-            <span className="text-sm text-zinc-500 font-medium">minibits.cash address server</span>
+            <span className="text-sm text-zinc-500 font-medium">minibits.cash</span>
             <span className="text-zinc-300">·</span>
+            <span className="text-xs text-zinc-400">Address server</span>
             <StatusDot status={addressServerStatus} />
           </div>
         </div>
