@@ -74,6 +74,7 @@ const WALLET_CARDS: WalletCard[] = [
 
 export default function WalletSection() {
   const [addressServerStatus, setAddressServerStatus] = useState<Status>("loading");
+  const [relayStatus, setRelayStatus] = useState<Status>("loading");
 
   useEffect(() => {
     let cancelled = false;
@@ -84,6 +85,14 @@ export default function WalletSection() {
       })
       .catch(() => {
         if (!cancelled) setAddressServerStatus("unavailable");
+      });
+    fetch("/api/relay-status")
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled) setRelayStatus(data.ok ? "operational" : "unavailable");
+      })
+      .catch(() => {
+        if (!cancelled) setRelayStatus("unavailable");
       });
     return () => {
       cancelled = true;
@@ -111,6 +120,9 @@ export default function WalletSection() {
             <span className="text-zinc-300">·</span>
             <span className="text-xs text-zinc-400">Address server</span>
             <StatusDot status={addressServerStatus} />
+            <span className="text-zinc-300">·</span>
+            <span className="text-xs text-zinc-400">Nostr relay</span>
+            <StatusDot status={relayStatus} />
           </div>
         </div>
 
