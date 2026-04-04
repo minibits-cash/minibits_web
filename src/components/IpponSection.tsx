@@ -184,6 +184,7 @@ const API_ENDPOINTS = [
 
 export default function IpponSection() {
   const [status, setStatus] = useState<IpponStatus>("loading");
+  const [mcpStatus, setMcpStatus] = useState<IpponStatus>("loading");
 
   useEffect(() => {
     let cancelled = false;
@@ -194,6 +195,14 @@ export default function IpponSection() {
       })
       .catch(() => {
         if (!cancelled) setStatus("unavailable");
+      });
+    fetch("/api/ippon-mcp-status")
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled) setMcpStatus(data.ok ? "operational" : "unavailable");
+      })
+      .catch(() => {
+        if (!cancelled) setMcpStatus("unavailable");
       });
     return () => {
       cancelled = true;
@@ -223,10 +232,14 @@ export default function IpponSection() {
           </p>
 
           {/* Status indicator */}
-          <div className="inline-flex items-center gap-3 rounded-xl border border-zinc-200 bg-zinc-50 px-5 py-3">
+          <div className="inline-flex flex-wrap items-center gap-3 rounded-xl border border-zinc-200 bg-zinc-50 px-5 py-3">
             <span className="text-sm text-zinc-500 font-medium">ippon.minibits.cash</span>
             <span className="text-zinc-300">·</span>
+            <span className="text-xs text-zinc-400">Wallet</span>
             <IpponStatusDot status={status} />
+            <span className="text-zinc-300">·</span>
+            <span className="text-xs text-zinc-400">MCP server</span>
+            <IpponStatusDot status={mcpStatus} />
           </div>
         </div>
 
