@@ -165,7 +165,7 @@ const IPPON_CARDS: IpponCard[] = [
   },
   {
     title: "MCP server",
-    text: "To facilitate use by AI agents, Ippon includes a built-in MCP (Mint Communication Protocol) server, allowing it to interact with the wallet in network (API) mode.",
+    text: "To facilitate use by AI agents, Ippon includes a built-in MCP (Model Communication Protocol) server, allowing it to interact with the wallet in network (API) mode.",
     video: false,
     link: { label: "Ippon MCP server", href: "https://ippon.minibits.cash/mcp" },
   },
