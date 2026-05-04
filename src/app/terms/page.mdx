@@ -3,14 +3,310 @@
 **Bitango Technologies, s.r.o.**
 Bratislava, Slovak Republic (reg. no. 51 299 631)
 
-*Last updated: coming soon*
+*Last updated: May 2026*
 
 ---
 
-> **Note:** The full Terms and Conditions are being finalised and will be published here shortly. Please check back soon.
+## Part 0 — General Terms
+
+### 0.1 About Minibits Project
+
+Bitango Technologies, a private limited company, operates the Minibits project ("Minibits"), a collection of open-source research and development initiatives exploring and developing Bitcoin-backed ecash, the Cashu protocol, and the Lightning Network.
+
+All Minibits sub-projects are provided primarily as research tools. They are not offered as commercial financial services and no fees are charged for their use. The project is self-funded from company's own capital and from grants.
+
+### 0.2 Scope of These Terms
+
+These Terms and Conditions ("Terms") govern access to and use of all services, applications, and APIs operated under the minibits.cash domain and related infrastructure. The Terms are organised into four parts:
+
+- Part 0 — General terms applicable to all sub-projects
+- Part 1 — Minibits Wallet and related LNURL server
+- Part 2 — Minibits Test Mint and Recovery Tool
+- Part 3 — Minibits Ippon
+
+Where a sub-project section conflicts with Part 0, the sub-project section prevails in respect of that sub-project.
+
+### 0.3 Acceptance
+
+By downloading, installing, accessing, or otherwise using any Minibits service you agree to be bound by these Terms and by our Privacy Policy, available at [https://minibits.cash/privacy](https://minibits.cash/privacy). If you do not agree, you must discontinue use immediately.
+
+### 0.4 Nature of the Services — Research & Development
+
+> **IMPORTANT — PLEASE READ**
+>
+> All Minibits services are experimental research software. They implement immature cryptographic protocols that have not received comprehensive security review. Software may contain known and unknown bugs. **Do not rely on these services for financial purposes. Do not hold funds you cannot afford to lose entirely.**
+>
+> The services are made available solely to advance research into peer-to-peer electronic cash systems. Bitango makes no representation that any service is fit for any purpose beyond research and evaluation.
+
+### 0.5 Eligibility
+
+You must be at least 18 years of age (or the age of legal majority in your jurisdiction, whichever is higher) to use any Minibits service. By using the services you represent and warrant that you meet this requirement.
+
+The services are not directed at, and must not be used by, persons located in jurisdictions where the receipt or use of Bitcoin, ecash, or related services is prohibited or restricted by applicable law. It is your sole responsibility to determine whether your use of these services is lawful in your jurisdiction.
+
+### 0.6 No Financial Services
+
+Bitango is not a bank, payment institution, money services business, virtual asset service provider, or any other type of regulated financial entity. Nothing in these Terms or on any Minibits website constitutes financial advice, investment advice, or a solicitation to engage in any financial transaction.
+
+Any Bitcoin or ecash transferred through Minibits services is transferred solely at your own risk and initiative. You are responsible for complying with all tax and reporting obligations arising from your use.
+
+### 0.7 Disclaimers and Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW:
+
+ALL SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, OR NON-INFRINGEMENT.
+
+BITANGO DOES NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE FROM SECURITY VULNERABILITIES.
+
+BITANGO SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR EXEMPLARY DAMAGES ARISING FROM YOUR USE OF OR INABILITY TO USE THE SERVICES, INCLUDING LOSS OF ECASH, BITCOIN, OR OTHER DIGITAL ASSETS, HOWEVER CAUSED.
+
+YOU BEAR SOLE RESPONSIBILITY FOR SECURING ACCESS TO YOUR WALLET, PRIVATE KEYS, SEED PHRASES, AND ANY FUNDS HELD THEREIN.
+
+Nothing in these Terms limits liability that cannot lawfully be excluded under applicable law (including liability for fraud or death or personal injury caused by negligence).
+
+### 0.8 Open-Source Software
+
+All Minibits software is released as open-source under the MIT Licence. Source code is available at [https://github.com/minibits-cash](https://github.com/minibits-cash). Third-party libraries used by the software are subject to their respective licences.
+
+The open-source nature of the software means that third parties may independently deploy modified or unmodified versions of the software. Bitango accepts no responsibility for any such deployments.
+
+### 0.9 Changes to Services and Terms
+
+Bitango reserves the right to modify, suspend, or discontinue any service or feature at any time, with or without notice, and without liability. Where practicable, we will provide reasonable advance notice of material discontinuations through the minibits.cash website or the app itself.
+
+We may update these Terms at any time. Continued use of any service after updated Terms are posted constitutes acceptance of the revised Terms. We will update the "Last updated" date above when changes are made.
+
+### 0.10 Privacy
+
+Our collection and use of personal data is governed by the Privacy Policy at [https://minibits.cash/privacy](https://minibits.cash/privacy), which is incorporated into these Terms by reference.
+
+### 0.11 Governing Law and Disputes
+
+These Terms are governed by the laws of the Slovak Republic, without regard to its conflict-of-laws rules. Any dispute arising from or relating to these Terms or the services shall be submitted to the exclusive jurisdiction of the competent courts of Bratislava, Slovak Republic, subject to any mandatory consumer-protection rights you may have under applicable law.
+
+### 0.12 Contact
+
+For any questions regarding these Terms, please contact us at:
+
+**Email:** [support@minibits.cash](mailto:support@minibits.cash)
+**Website:** [https://minibits.cash](https://minibits.cash)
 
 ---
 
-## Contact
+## Part 1 — Minibits Wallet & LNURL Server
 
-If you have any questions, please contact us at [support@minibits.cash](mailto:support@minibits.cash).
+### 1.1 Description
+
+Minibits Wallet ("the Wallet") is an open-source mobile application for Android and iOS that implements ecash wallets backed by Bitcoin via the Cashu protocol and the Lightning Network. The associated LNURL server provides Lightning address routing and NOSTR-based identity services under the minibits.cash domain (e.g. yourname@minibits.cash).
+
+The Wallet is in beta. It is provided as a research and development tool to explore how Bitcoin-backed ecash can enable instant, low-cost, and private value transfer. It is not offered as a consumer financial product.
+
+### 1.2 Beta Software Disclaimer
+
+> **BETA SOFTWARE — IMPORTANT RISK NOTICE**
+>
+> The Wallet is beta software with incomplete functionality and both known and unknown bugs. The Cashu protocol implemented by the Wallet has not yet received extensive security review or testing. **Use only with amounts you can afford to lose entirely. This wallet should be used for research purposes only.**
+
+### 1.3 Ecash and Mint Trust Model
+
+Ecash tokens held in the Wallet are issued by a Cashu mint of your choosing. By using a mint you accept that:
+
+- The ecash is only as trustworthy as the mint that issues it. You trust the mint to hold the corresponding Bitcoin reserve until you redeem or transfer your tokens.
+- Bitango operates a test mint (mint.minibits.cash) for research and evaluation purposes only. See Part 2 for the specific terms governing that mint.
+- The Wallet allows you to connect to any compatible third-party mint. Bitango is not responsible for any third-party mint's operations, solvency, availability, or conduct.
+- Ecash tokens are bearer instruments. Anyone who obtains your tokens can spend them. Theft of tokens is irreversible.
+- Loss of tokens can be recovered only through the seed phrase. It is sole responsibility of the user to make proper seed phrase backup and refresh it on each wallet reinstall or factory reset.
+
+### 1.4 LNURL Server and Wallet Addresses
+
+Bitango operates an LNURL/NOSTR server that enables wallet addresses (e.g. yourname@minibits.cash) to function as Lightning addresses and NOSTR NIP-05 identifiers. By using this feature you acknowledge:
+
+- The LNURL server is provided on a best-efforts basis with no uptime guarantee.
+- The server may be discontinued at any time. Bitango will endeavour to provide reasonable notice through the minibits.cash website where practicable, but no advance-notice period is guaranteed.
+- If the server is discontinued, your @minibits.cash address will cease to route payments. This will not affect ecash already stored on-device. This will not affect other means of ecash transfers.
+- Custom wallet names are offered in exchange for a voluntary donation. Payment of a donation does not create any contractual entitlement to continued service.
+- Wallet addresses and NOSTR keypairs are associated with anonymous identifiers. Please refer to the Privacy Policy for details of what information is processed.
+
+### 1.5 Backup and Recovery
+
+The Wallet provides backup and recovery mechanisms including a 12-word mnemonic seed phrase, and wallet export functionality. You are solely responsible for:
+
+- Creating and securely storing backups of your seed phrase and wallet data.
+- Protecting your device, seed phrase, and wallet export files from unauthorised access.
+- Recovering your wallet in the event of device loss, damage, or failure.
+
+Bitango cannot recover lost ecash, seed phrases, or wallet data on your behalf.
+
+### 1.6 Nostr Wallet Connect (NWC)
+
+The Wallet supports Nostr Wallet Connect (NWC), which allows third-party applications to initiate payments from your Wallet. You are solely responsible for the NWC connections you authorise and for any payments initiated through them.
+
+### 1.7 NFC Features
+
+The Wallet supports NFC-based token transfer (including Android HCE). NFC features operate at close range and are subject to device hardware limitations. Bitango is not responsible for failed NFC transactions.
+
+### 1.8 Over-the-Air (OTA) Updates
+
+The Wallet may receive optional OTA software updates. OTA updates are opt-in except critical security-related updates. Bitango recommends keeping the Wallet updated to benefit from bug fixes and security improvements.
+
+### 1.9 Acceptable Use
+
+You agree not to use the Wallet or the LNURL server:
+
+- For any purpose that is unlawful under applicable law, including money laundering, terrorist financing, or the circumvention of sanctions.
+- To process transactions on behalf of third parties in a manner that would require regulatory authorisation that you do not hold.
+- To interfere with, disrupt, inspect, attack, misuse or overload Bitango infrastructure.
+- In any way that could expose Bitango or its infrastructure to legal liability.
+
+Failing to adhere to the Acceptable Use policy may lead to your IP address being blocked from accessing the LNURL server temporarily or permanently, or to the removal of your wallet address record from the LNURL server.
+
+---
+
+## Part 2 — Minibits Test Mint & Minibits Recovery Tool
+
+### 2.1 Description
+
+Bitango operates an experimental Cashu mint ("Test Mint") accessible at mint.minibits.cash. The Test Mint is a research deployment used to test Cashu protocol implementations, evaluate the Minibits Wallet, and explore ecash issuance mechanics.
+
+The Minibits Recovery Tool is a companion web application that assists users in recovering ecash tokens from the Test Mint in situations where the Wallet is unable to do so automatically.
+
+### 2.2 Strictly for Testing and Evaluation
+
+> **TEST MINT — CRITICAL LIMITATIONS**
+>
+> The Test Mint is NOT a production financial service. It is operated exclusively for research and evaluation purposes. Ecash issued by the Test Mint is backed solely by Bitcoin Lightning node. There is no guarantee whatsoever that Bitcoin Lightning node will not fail or lose its reserves as a result of technical failure, operational error, theft or force majeure.
+>
+> **DO NOT store funds in the Test Mint that you cannot afford to lose entirely.**
+
+Access to the Test Mint is open to any Cashu-compatible wallet for testing and evaluation purposes only. The Test Mint imposes strict limits on transaction amounts in order to prevent illicit use, as displayed by the mint's info endpoint.
+
+### 2.3 No Uptime Guarantee
+
+The Test Mint is operated on a best-efforts basis. Bitango makes no commitment regarding availability, uptime, or the duration for which the mint will remain operational. The Test Mint may be taken offline, reset, or permanently discontinued at any time without prior notice.
+
+In the event of a planned shutdown, Bitango will endeavour to announce this through the minibits.cash website or on social networks, but provides no guarantee of advance notice.
+
+### 2.4 Mint Keyset Rotation
+
+The Test Mint issues ecash using cryptographic keysets. In accordance with the Cashu protocol, the mint may rotate its active keyset — that is, retire an existing keyset and introduce a new one — for operational or security reasons. Keyset rotations are expected to occur periodically, typically no more than once per calendar year under normal operating conditions, but may occur at any time and without prior notice if a security concern requires it.
+
+Upon a keyset rotation:
+
+- Ecash tokens issued under the previous ("retired") keyset remain valid for redemption and swap for a transitional period of twelve (12) months from the date of rotation.
+- During that transitional period, the mint will continue to honour swap requests that exchange retired-keyset ecash for freshly issued ecash under the current active keyset. Wallets that support keyset rotation — including the Minibits Wallet — will perform this swap automatically, while user actively uses the wallet.
+- If you use a wallet only occasionally or one that does not handle keyset rotation automatically, you are responsible for manually swapping any retired-keyset ecash before the transitional period expires.
+- After the twelve-month transitional period, the retired keyset may be removed from the mint's database at any time and without further notice. Ecash tokens that have not been swapped before removal will no longer be honoured by the Test Mint. Bitango bears no liability for ecash lost because it was not swapped within the transitional period.
+
+Bitango will endeavour to announce scheduled keyset rotations in advance through the minibits.cash website or on its social network profile. The current active keyset and any retired keysets still within their transitional period are always queryable via the mint's keys endpoint.
+
+### 2.5 Risk of Ecash Loss
+
+By using the Test Mint, you explicitly acknowledge and accept that:
+
+- Ecash issued by the Test Mint may become unspendable if the mint is taken offline, experiences a technical failure, or is reset.
+- The Cashu protocol is experimental. Implementation bugs may result in ecash that cannot be spent or redeemed.
+- Bitango will make reasonable efforts to provide a redemption window before discontinuing the mint, but cannot guarantee this in all circumstances (e.g. in the event of a security incident).
+- Bitango does not guarantee the solvency of the Bitcoin reserve backing ecash issued by the Test Mint.
+
+### 2.6 Recovery Tool
+
+The Minibits Recovery Tool (accessible via minibits.cash) is provided as a research utility to assist in recovering ecash from the Test Mint. The Recovery Tool:
+
+- Is experimental software and may not succeed in all recovery scenarios.
+- Supports Test Mint recovery only; use the in-app seed phrase recovery tool to recover from other third-party mints.
+- Requires you to provide your wallet seed phrase that never leaves the browser. You are solely responsible for the security of the device and browser from which you access the Recovery Tool.
+- Is provided without warranty. Bitango is not liable for failed recovery attempts or for any loss of ecash that the Recovery Tool is unable to recover.
+
+### 2.7 Third-Party Mints
+
+The Minibits Wallet may be used with any compatible third-party Cashu mint. These Terms do not govern third-party mints. Bitango has no control over, and accepts no responsibility for, any third-party mint.
+
+---
+
+## Part 3 — Minibits Ippon
+
+### 3.1 Description
+
+Minibits Ippon ("Ippon") is an experimental, open-source ecash and Lightning wallet designed primarily for non-human systems — in particular AI agents and automated processes — that require programmatic access to micropayment capabilities. Ippon is available as:
+
+- A REST API server (hosted deployment at ippon.minibits.cash);
+- An MCP (Model Context Protocol) server facade, provided by the companion minibits_ippon_mcp project, which wraps the Ippon API for AI agent integration;
+- A local CLI tool for self-hosted or agent-controlled deployments.
+
+Ippon is released as open-source software under the MIT Licence. The hosted instance at ippon.minibits.cash is provided by Bitango for research and evaluation purposes only.
+
+### 3.2 Alpha Software Disclaimer
+
+> **ALPHA SOFTWARE — CRITICAL RISK NOTICE**
+>
+> Ippon is alpha-stage software. It is provided exclusively for testing and evaluation purposes. It may contain serious bugs, security vulnerabilities, and incomplete features. **Use it at your own risk, with small amounts only. Do not store funds you cannot afford to lose.** The hosted instance at ippon.minibits.cash may be reset, reconfigured, or discontinued at any time without notice.
+
+### 3.3 Intended Users
+
+Ippon is intended for:
+
+- Developers and researchers evaluating ecash payment capabilities for AI agent or automated workflows.
+- Cashu mint operators exploring complementary wallet-as-a-service tooling.
+- AI agents or automated systems acting on behalf of and under the control of a responsible developer or operator.
+
+Ippon is not intended for general consumer use. By using the hosted instance or deploying your own instance, you represent that you fall within one of the above categories and that you understand the alpha-stage nature of the software.
+
+### 3.4 Custodial Model and Security
+
+Ippon is a fully custodial solution. Ecash tokens are held server-side by the Ippon instance. Wallet access is controlled by a bearer access_key issued at wallet creation time. You are responsible for:
+
+- Securing the access_key associated with each wallet. Any party who obtains the access_key can access and drain the wallet.
+- Emptying and discarding wallets at the conclusion of each session. Ippon wallets are designed to be short-lived and should not hold balances between sessions.
+- Ensuring that AI agents or automated systems you deploy do not accumulate balances beyond the intended scope of each task.
+
+The MCP server component (minibits_ippon_mcp) manages access_keys on behalf of agents and links them to session identifiers to reduce the risk of key exposure. However, the operator of the MCP server remains responsible for securing the underlying infrastructure.
+
+### 3.5 Operator-Defined Limits
+
+The hosted instance at ippon.minibits.cash enforces strict limits on wallet balances, payment amounts, and wallet creation rates per IP address. These limits are published via the GET /v1/info endpoint. Bitango reserves the right to change these limits at any time without notice.
+
+Self-hosted Ippon deployments are configured by their operators. Bitango accepts no responsibility for the configuration or operation of self-hosted instances.
+
+### 3.6 Self-Hosted Deployments
+
+Ippon is open-source and may be self-hosted by any party. If you operate your own Ippon instance:
+
+- You are solely responsible for the security, availability, and legal compliance of your deployment.
+- You must implement appropriate rate limiting, balance caps, and access controls.
+- You must ensure your deployment complies with all applicable laws and regulations in your jurisdiction, including any requirements relating to the custody or transmission of virtual assets.
+- You must publish your own terms of service and privacy policy for any users of your instance.
+
+Bitango provides the open-source software on an "as is" basis and accepts no liability for self-hosted deployments.
+
+### 3.7 MCP Server (minibits_ippon_mcp)
+
+The MCP server is a companion open-source project that provides a Model Context Protocol interface over the Ippon REST API. It is intended to simplify integration of Ippon wallets into AI agent frameworks. The MCP server:
+
+- Is alpha software and subject to the same disclaimers as Ippon itself.
+- Manages wallet access_keys server-side and links them to agent session identifiers, but does not provide cryptographic guarantees of access control.
+- May be self-hosted independently of the Ippon REST API server.
+
+By using the MCP server you accept responsibility for ensuring that the agents you deploy use the wallet only within the scope you intend.
+
+### 3.8 Acceptable Use
+
+You agree not to use Ippon or the MCP server:
+
+- To process transactions for third parties at scale in a manner that would constitute a regulated payment or money transmission service without appropriate authorisation.
+- To circumvent the operator-defined balance and rate limits through the creation of multiple wallets or IP rotation.
+- For any unlawful purpose, including the laundering of proceeds of crime or the financing of prohibited activities.
+- To disrupt, attack, or degrade the hosted instance or its underlying infrastructure.
+
+### 3.9 No Uptime Guarantee
+
+The hosted instance at ippon.minibits.cash is provided on a best-efforts basis. Bitango makes no commitment regarding uptime, availability, or continuity of service. The instance may be reset or discontinued at any time.
+
+---
+
+## Entire Agreement
+
+These Terms, together with the Privacy Policy at [https://minibits.cash/privacy](https://minibits.cash/privacy), constitute the entire agreement between you and Bitango Technologies, s.r.o. in relation to the Minibits services and supersede all prior representations, agreements, or understandings.
+
+---
+
+*© 2026 Bitango Technologies, s.r.o. All rights reserved.*
