@@ -1,15 +1,12 @@
 # Privacy Policy
 
-**Bitango Technologies, s.r.o.**
-Bratislava, Slovak Republic (reg. no. 51 299 631)
-
-*Last updated: March 2025*
+*Last updated: 30th of June 2026*
 
 ---
 
 ## Introduction
 
-Bitango Technologies, s.r.o. ("we", "us", or "our") operates the **Minibits Wallet** mobile application. This Privacy Policy explains what information we collect when you use the app, how we use it, and your rights regarding that information.
+Bitango Technologies, limited company ("we", "us", or "our"), operates the **Minibits Wallet** mobile application. This Privacy Policy explains what information we collect when you use the app, how we use it, and your rights regarding that information.
 
 By using the Minibits Wallet app you acknowledge this Privacy Policy. If you are not comfortable with any of the practices described here, please discontinue use of the application.
 
@@ -17,24 +14,29 @@ By using the Minibits Wallet app you acknowledge this Privacy Policy. If you are
 
 ## Information We Collect
 
-We collect **limited information** during app usage and do not acquire personal data from external vendors.
+We collect **limited information** during app usage and do not acquire personal data from external vendors. We operate a public LNURL/NOSTR server that enables wallet addresses (e.g. yourname@minibits.cash) to function as Lightning addresses and NOSTR NIP-05 public identifiers. 
+In order to provide this functionality, app communicates with the server limited inforamtion listed below.
 
-### Information processed by the app
+### Information processed by the app and by our LNURL server infrastructure
 
 - **Randomly generated wallet identifier** — a unique, anonymous identifier generated on your device.
 - **Shareable wallet name and associated public key** — a human-readable name you may choose and share with others.
-- **Random profile picture** — an avatar connected to your wallet identity, generated randomly.
-- **Anonymous diagnostics and error reporting data** — crash reports and performance metrics that help us improve the app.
+- **Random profile picture** — a public avatar connected to your wallet identity, generated randomly.
+- **Push notification tokens** — if you give permission to use push notifications.
+- **Digital signatures** — wallet periodically provides signed authorization request in order to keep secure access to the LNURL server API.
+- **Anonymous diagnostics and error reporting data** — crash reports and performance metrics that help us improve the app. You can opt-out from sending us this data.
+
+Our logs collection service strips IP addresses and other private information automatically.
 
 ### Information stored only on your device
 
 The following data is stored exclusively on your device and is **never transmitted to our servers**:
 
-- Encryption keys created locally on your device
-- eCash tokens from your selected mints
-- Private keys associated with your wallet accounts
+- Seed phrase and associated private key
+- On-device authorization token, in case you opt-in for biometric authentication
+- Ecash tokens and their total balance
 - Transaction records
-- Peer contact information stored as shareable wallet names
+- Contacts - wallet addresses of frequent payees
 
 ---
 
@@ -45,7 +47,7 @@ We use collected information to:
 - Manage and repair any aspect of the product or service
 - Comply with applicable legal and regulatory requirements
 
-We do not rely on consent as the legal basis for processing. If you are not comfortable with how we process data, you should refrain from using the application.
+We rely on the consent given to us upon application first start as the legal basis for processing. If you are not comfortable with how we process data, you should refrain from using the application.
 
 ---
 
@@ -53,7 +55,7 @@ We do not rely on consent as the legal basis for processing. If you are not comf
 
 We may share your information with:
 
-- **IT service providers** necessary for operating the app
+- **IT service providers** necessary for operating the app and associated LNURL server
 - **Legal authorities** when required by law
 
 We do not sell your personal data to third parties.
@@ -68,7 +70,7 @@ We retain your information for as long as necessary to:
 - Resolve disputes
 - Meet legal obligations
 
-You may request deletion of your data at any time (see Your Rights below), though please note that certain contact and service functionality will no longer be available after deletion.
+You may request deletion of your data at any time (see Your Rights below), though please note that certain wallet functionality will stop working after deletion.
 
 ---
 
@@ -93,7 +95,7 @@ We implement technical and organisational measures to protect your personal data
 
 ## Children's Privacy
 
-The Minibits Wallet app is not directed at children under the age of 13. We do not knowingly collect personal information from children.
+The Minibits Wallet app is not directed at children under the age of 18. We do not knowingly collect personal information from children.
 
 ---
 
@@ -107,5 +109,6 @@ We may update this Privacy Policy from time to time. Changes will be posted with
 
 If you have any questions about this Privacy Policy, please contact us:
 
-**Bitango Technologies, s.r.o.**
 Email: [support@minibits.cash](mailto:support@minibits.cash)
+
+*© 2026 Bitango Technologies, Bratislava, Slovak Republic (reg. no. 51 299 631)*

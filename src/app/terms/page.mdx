@@ -123,7 +123,7 @@ As a part of the Wallet infrastructure, Bitango Technologies operates a public L
 - The server may be discontinued at any time. Bitango Technologies will endeavour to provide reasonable notice through the minibits.cash website where practicable, but no advance-notice period is guaranteed.
 - If the server is discontinued, your @minibits.cash address will cease to route payments. This will not affect ecash already stored on-device. This will not affect other means of ecash transfers.
 - Custom wallet names are offered in exchange for a voluntary donation. Payment of a donation does not create any contractual entitlement to continued service.
-- Wallet addresses and NOSTR keypairs are associated with anonymous identifiers. Please refer to the Privacy Policy for details of what information is processed.
+- The LNURL server associates wallet addresses other anonymous identifiers, such as public keys. Please refer to the Privacy Policy for details of what information is processed.
 
 ### 1.5 Backup and Recovery
 
@@ -193,7 +193,7 @@ Upon a keyset rotation:
 - Ecash tokens issued under the previous ("retired") keyset remain valid for redemption and swap for a transitional period of twelve (12) months from the date of rotation.
 - During that transitional period, the mint will continue to honour swap requests that exchange retired-keyset ecash for freshly issued ecash under the current active keyset. Wallets that support keyset rotation — including the Minibits Wallet — will perform this swap automatically, while the user actively uses the wallet.
 - If you use a wallet only occasionally or one that does not handle keyset rotation automatically, you are responsible for manually swapping any retired-keyset ecash before the transitional period expires.
-- After the twelve-month transitional period, the retired keyset may be removed from the mint's database at any time and without further notice. Ecash tokens that have not been swapped before removal will no longer be honoured by the Test Mint. Bitango Technologies bears no liability for ecash lost because it was not swapped within the transitional period.
+- After the twelve-month transitional period, the retired keyset may be removed from the mint's database at any time and without further notice. Ecash tokens that have not been swapped before removal will no longer be honoured by the Test Mint. The Development team bears no liability for ecash lost because it was not swapped within the transitional period.
 
 The Development team will endeavour to announce scheduled keyset rotations in advance through their social network profile. The current active keyset and any retired keysets still within their transitional period are always queryable via the mint's keys endpoint.
 
@@ -204,7 +204,7 @@ By using the Test Mint, you explicitly acknowledge and accept that:
 - Ecash issued by the Test Mint may become unspendable if the mint is taken offline, attacked or experiences a technical failure.
 - The Cashu protocol is experimental. Implementation bugs may result in ecash that cannot be spent or redeemed.
 - The Development team will make reasonable efforts to provide a redemption window before discontinuing the mint, but cannot guarantee this in all circumstances (e.g. in the event of a security incident).
-- The Development team does not guarantee the solvency of the Bitcoin reserve backing ecash issued by the Test Mint in the event of force majeure, attack or technical failure.
+- The Development team does not guarantee the solvency of the Bitcoin reserve backing ecash issued by the Test Mint in the event of force majeure, successful attack or unrecoverable technical failure.
 
 ### 2.6 Recovery Tool
 
