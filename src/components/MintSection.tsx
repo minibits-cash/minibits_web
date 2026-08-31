@@ -52,7 +52,7 @@ const MINT_CARDS: MintCard[] = [
     title: "Cashu Ecash",
     text: "Minibits mint implements the Cashu protocel with high privacy guarantees - mint never learns your balance or transactions. Issued tokens are bearer instruments with instant and even offline exchange.",
     link: { label: "Learn about Cashu", href: "https://cashu.space" },
-    image: "https://cashu.space/mstile-150x150.png",
+    image: "/img/cashu.webp",
     imageClass: "h-full object-contain w-full",
   },
   {
