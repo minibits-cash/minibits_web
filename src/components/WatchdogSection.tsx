@@ -39,7 +39,8 @@ type WatchdogData = {
   updatedAt: string | null;
   unit: string;
   reserves: number | null;
-  mintOnchain: number | null;
+  /** Served but unused — see the commented-out breakdown line on the card. */
+  // mintOnchain: number | null;
   ecashIssued: number | null;
   ranges: Record<RangeKey, RangeData>;
 };
@@ -557,16 +558,26 @@ export default function WatchdogSection() {
         ) : (
           <div className="grid gap-6 lg:grid-cols-3">
             <div className="flex flex-col gap-6">
+              {/* An alternative `sub` for the card below: a breakdown of the
+                  figure rather than its change over the window — the mint's own
+                  on-chain wallet, which excludes the Lightning node's on-chain
+                  funds. The route still serves `mintOnchain`, so restoring it
+                  means swapping this in and uncommenting the field on
+                  WatchdogData.
+
+                  sub={
+                    data?.mintOnchain === null || data?.mintOnchain === undefined
+                      ? null
+                      : `incl. ${fmtSat(data.mintOnchain)} sat in mint's onchain wallet`
+                  }
+              */}
               <StatCard
                 label="Reserves"
                 value={data?.reserves ?? null}
-                // A part of the figure above it rather than a change over time:
-                // the mint's own on-chain wallet, which excludes the Lightning
-                // node's on-chain funds.
                 sub={
-                  data?.mintOnchain === null || data?.mintOnchain === undefined
+                  current?.deltaReserves === null || current?.deltaReserves === undefined
                     ? null
-                    : `incl. ${fmtSat(data.mintOnchain)} sat in mint's onchain wallet`
+                    : `${fmtSigned(current.deltaReserves)} sat over ${rangeLabel}`
                 }
                 hint="Lightning channel balances and on-chain funds — everything that backs the issued ecash."
                 accent={RESERVES_COLOR}
@@ -586,12 +597,14 @@ export default function WatchdogSection() {
 
             <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm lg:col-span-2">
               <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
-                <div>
+                {/* min-w-0 lets the subtitle shrink instead of pushing the
+                    toggle onto a line of its own. */}
+                <div className="min-w-0 flex-1">
                   <h3 className="text-sm font-semibold text-zinc-900">
                     Reserves against issued ecash
                   </h3>
                   <p className="mt-0.5 text-xs text-zinc-500">
-                    Both in sat, on one axis, over {rangeLabel}.
+                    over {rangeLabel}. Reserves include paid but not yet issued ecash, so some drift between the two lines is normal.
                   </p>
                 </div>
                 <button
