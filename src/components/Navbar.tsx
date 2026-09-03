@@ -7,6 +7,7 @@ import Image from "next/image";
 const navLinks = [
   { label: "Wallet for Android and iOS", href: "#wallet" },
   { label: "Minibits test mint", href: "#mint" },
+  { label: "Mint watchdog", href: "#watchdog" },
   { label: "Ippon wallet for AI agents", href: "#ippon" },
 ];
 
@@ -61,7 +62,9 @@ export default function Navbar() {
         </a>
 
         {/* Desktop nav links */}
-        <div className="hidden items-center gap-1 md:flex">
+        {/* Four links no longer fit beside the wordmark at 768px, so the tablet
+            band gets the hamburger — which already lists every link. */}
+        <div className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -76,7 +79,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="flex items-center justify-center rounded-md p-2 text-zinc-400 hover:bg-zinc-800 hover:text-white md:hidden"
+          className="flex items-center justify-center rounded-md p-2 text-zinc-400 hover:bg-zinc-800 hover:text-white lg:hidden"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -94,7 +97,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="border-t border-zinc-800 bg-zinc-900 px-6 pb-4 md:hidden">
+        <div className="border-t border-zinc-800 bg-zinc-900 px-6 pb-4 lg:hidden">
           <div className="flex flex-col gap-1 pt-2">
             {navLinks.map((link) => (
               <a
