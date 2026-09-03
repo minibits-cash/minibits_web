@@ -39,6 +39,7 @@ type WatchdogData = {
   updatedAt: string | null;
   unit: string;
   reserves: number | null;
+  mintOnchain: number | null;
   ecashIssued: number | null;
   ranges: Record<RangeKey, RangeData>;
 };
@@ -420,15 +421,14 @@ function StatCard({
   label,
   value,
   hint,
-  delta,
-  deltaSuffix,
+  sub,
   accent,
 }: {
   label: string;
   value: number | null;
   hint: string;
-  delta: number | null;
-  deltaSuffix: string;
+  /** The one line under the figure — a breakdown, or a change over the window. */
+  sub: string | null;
   accent: string;
 }) {
   return (
@@ -447,9 +447,7 @@ function StatCard({
       {/* Toneless on purpose: reserves and issued ecash normally move together —
           a melt lowers both, a mint raises both — so direction alone is not
           good or bad news, and colouring it would imply otherwise. */}
-      <div className="mt-3 text-sm tabular-nums text-zinc-500">
-        {fmtSigned(delta)} sat {deltaSuffix}
-      </div>
+      <div className="mt-3 min-h-[1.25rem] text-sm tabular-nums text-zinc-500">{sub}</div>
       <p className="mt-auto pt-4 text-xs leading-relaxed text-zinc-400">{hint}</p>
     </div>
   );
@@ -513,11 +511,12 @@ export default function WatchdogSection() {
         <div className="mb-10 max-w-3xl">
           <h2 className="mb-4 text-4xl font-bold text-zinc-900 sm:text-5xl">Minibits Watchdog</h2>
           <p className="text-lg text-zinc-600">
-            An independent watchdog continuously checks that the value backing the mint still
+            An independent watchdog app continuously checks that the value backing the mint still
             matches the ecash the mint has issued. It reads the Lightning node and the mint
             read-only, every five minutes, and alerts the operator on discrepancies, stuck
-            operations and node problems. What it records is internal — the two figures below are
-            the public part of it.
+            operations and node problems using push notifications or email. 
+            Find small subset of metrics here, live from Minibits mint, and run your own watchdog 
+            to monitor your mint in real time.
           </p>
         </div>
 
@@ -561,17 +560,26 @@ export default function WatchdogSection() {
               <StatCard
                 label="Reserves"
                 value={data?.reserves ?? null}
-                delta={current?.deltaReserves ?? null}
-                deltaSuffix={`over ${rangeLabel}`}
-                hint="Lightning channel balances, on-chain funds and declared cold storage — everything that backs the issued ecash."
+                // A part of the figure above it rather than a change over time:
+                // the mint's own on-chain wallet, which excludes the Lightning
+                // node's on-chain funds.
+                sub={
+                  data?.mintOnchain === null || data?.mintOnchain === undefined
+                    ? null
+                    : `incl. ${fmtSat(data.mintOnchain)} sat in mint's onchain wallet`
+                }
+                hint="Lightning channel balances and on-chain funds — everything that backs the issued ecash."
                 accent={RESERVES_COLOR}
               />
               <StatCard
                 label="Ecash issued"
                 value={data?.ecashIssued ?? null}
-                delta={current?.deltaEcashIssued ?? null}
-                deltaSuffix={`over ${rangeLabel}`}
-                hint="Ecash in circulation and not yet redeemed — what the mint owes its users."
+                sub={
+                  current?.deltaEcashIssued === null || current?.deltaEcashIssued === undefined
+                    ? null
+                    : `${fmtSigned(current.deltaEcashIssued)} sat over ${rangeLabel}`
+                }
+                hint="Ecash issued and in circulation — what the mint owes its users."
                 accent={ECASH_COLOR}
               />
             </div>

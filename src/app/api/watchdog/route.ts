@@ -9,9 +9,10 @@ import { NextResponse } from "next/server";
  *
  *  - reads the watchdog server-side, so its address never reaches the bundle;
  *  - forwards nothing verbatim — the upstream payload is reduced here to the
- *    handful of figures the public section renders (reserves, ecash issued,
- *    their change over a window, and a downsampled series of those two). Own
- *    capital, unclaimed balances, node internals and alerts stay inside;
+ *    handful of figures the public section renders (reserves, the mint's own
+ *    on-chain balance, ecash issued, their change over a window, and a
+ *    downsampled series of the first and last). Own capital, unclaimed
+ *    balances, node internals and alerts stay inside;
  *  - caches in memory for 5 minutes, matching the watchdog's own collection
  *    interval, so page traffic cannot turn into upstream load.
  */
@@ -57,12 +58,14 @@ type Payload = {
   updatedAt: string | null;
   unit: "sat";
   reserves: number | null;
+  /** The mint's own on-chain wallet — a part of reserves, not a term beside it. */
+  mintOnchain: number | null;
   ecashIssued: number | null;
   ranges: Record<RangeKey, RangeData>;
 };
 
-/** Raw sample, already reduced to the two public figures. */
-type Sample = { t: number; reserves: number; ecash: number };
+/** Raw sample, already reduced to the public figures. */
+type Sample = { t: number; reserves: number; ecash: number; mintOnchain: number };
 
 type UpstreamPoint = {
   t: string;
@@ -126,7 +129,7 @@ async function fetchSamples(): Promise<Sample[]> {
     if (!Number.isFinite(t)) continue;
     // Reserves as the watchdog defines them: node balance + declared cold
     // storage + the mint's own on-chain wallet.
-    samples.push({ t, reserves: node + cold + onchain, ecash });
+    samples.push({ t, reserves: node + cold + onchain, ecash, mintOnchain: onchain });
   }
   samples.sort((a, b) => a.t - b.t);
   return samples;
@@ -237,6 +240,7 @@ async function buildPayload(): Promise<Payload> {
     updatedAt: latest ? new Date(latest.t).toISOString() : null,
     unit: "sat",
     reserves: latest ? latest.reserves : null,
+    mintOnchain: latest ? latest.mintOnchain : null,
     ecashIssued: latest ? latest.ecash : null,
     ranges,
   };
