@@ -283,7 +283,7 @@ export default function IpponSection() {
         <div className="grid gap-6 lg:grid-cols-2">
 
         {/* API quick reference */}
-        <div className="rounded-2xl border border-zinc-200 bg-zinc-950 p-8">
+        <div className="min-w-0 rounded-2xl border border-zinc-200 bg-zinc-950 p-8">
           <div className="mb-6 flex items-center gap-3">
             <div className="flex gap-1.5">
               <div className="h-3 w-3 rounded-full bg-red-500" />
@@ -294,7 +294,7 @@ export default function IpponSection() {
           </div>
           <div className="space-y-3">
             {API_ENDPOINTS.map((ep) => (
-              <div key={ep.key} className="flex items-center gap-4">
+              <div key={ep.key} className="flex flex-wrap items-center gap-x-4 gap-y-1">
                 <span
                   className={`w-14 shrink-0 rounded px-2 py-0.5 text-center font-mono text-xs font-bold ${
                     ep.method === "POST"
@@ -325,7 +325,7 @@ export default function IpponSection() {
         </div>
 
         {/* CLI demo */}
-        <div className="rounded-2xl border border-zinc-200 bg-zinc-950 p-8">
+        <div className="min-w-0 rounded-2xl border border-zinc-200 bg-zinc-950 p-8">
           <div className="mb-6 flex items-center gap-3">
             <div className="flex gap-1.5">
               <div className="h-3 w-3 rounded-full bg-red-500" />
