@@ -16,6 +16,7 @@ const FOOTER_LINKS = [
     heading: "Other services",
     links: [
       { label: "Minibits Recovery", href: "https://recovery.minibits.cash", external: true },
+      { label: "Minibits Watchdog", href: "https://minibits.cash#watchdog", external: true },
       { label: "Ippon wallet", href: "https://ippon.minibits.cash/v1", external: true },
       { label: "Ippon wallet MCP", href: "https://ippon.minibits.cash/mcp", external: true },
     ],
