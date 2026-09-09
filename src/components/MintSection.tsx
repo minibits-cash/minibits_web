@@ -18,14 +18,18 @@ const METHOD_LABELS: Record<string, string> = {
 };
 
 function formatAmount(value?: number) {
-  return value === undefined ? "\u2014" : value.toLocaleString("en-US");
+  if (value === undefined) return "\u2014";
+  for (const [size, word] of [[1e9, "billion"], [1e6, "million"]] as const) {
+    if (value >= size) return `${+(value / size).toFixed(2)} ${word}`;
+  }
+  return value.toLocaleString("en-US");
 }
 
 function MethodTable({ title, methods }: { title: string; methods: PaymentMethod[] }) {
   if (methods.length === 0) return null;
   return (
-    <div className="rounded-xl border border-zinc-200 bg-zinc-50 px-5 py-4">
-      <div className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500">
+    <div>
+      <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500">
         {title}
       </div>
       <table className="w-full text-sm">
@@ -169,24 +173,25 @@ export default function MintSection() {
             When using ecash, you trust the issuing mint to redeem it back for bitcoin. Use only with small amounts and at your own risk. We encourage communities to set up their own mints for production use.
           </p>
 
-          {/* Status indicator */}
-          <div className="inline-flex flex-wrap items-center gap-3 rounded-xl border border-zinc-200 bg-zinc-50 px-5 py-3">
-            <span className="text-sm text-zinc-500 font-medium">mint.minibits.cash</span>
-            <span className="text-zinc-300">·</span>
-            <span className="text-xs text-zinc-400">Mint</span>
-            <StatusDot status={status} />
-            <span className="text-zinc-300">·</span>
-            <span className="text-xs text-zinc-400">Lightning node</span>
-            <StatusDot status={lndStatus} />
-          </div>
-
-          {/* Supported payment methods */}
-          {(mintMethods.length > 0 || meltMethods.length > 0) && (
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              <MethodTable title="Minting (deposits)" methods={mintMethods} />
-              <MethodTable title="Melting (withdrawals)" methods={meltMethods} />
+          {/* Status and supported payment methods */}
+          <div className="rounded-xl border border-zinc-200 bg-zinc-50 px-5 py-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-sm text-zinc-500 font-medium">mint.minibits.cash</span>
+              <span className="text-zinc-300">·</span>
+              <span className="text-xs text-zinc-400">Mint</span>
+              <StatusDot status={status} />
+              <span className="text-zinc-300">·</span>
+              <span className="text-xs text-zinc-400">Lightning node</span>
+              <StatusDot status={lndStatus} />
             </div>
-          )}
+
+            {(mintMethods.length > 0 || meltMethods.length > 0) && (
+              <div className="mt-4 grid gap-5 border-t border-zinc-200 pt-4 sm:grid-cols-2">
+                <MethodTable title="Minting (deposits)" methods={mintMethods} />
+                <MethodTable title="Melting (withdrawals)" methods={meltMethods} />
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Cards */}
