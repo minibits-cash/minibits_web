@@ -5,6 +5,57 @@ import SlideshowImage from "./SlideshowImage";
 
 type MintStatus = "loading" | "operational" | "unavailable";
 
+type PaymentMethod = {
+  method: string;
+  unit: string;
+  min_amount?: number;
+  max_amount?: number;
+};
+
+const METHOD_LABELS: Record<string, string> = {
+  bolt11: "Lightning",
+  onchain: "On-chain",
+};
+
+function formatAmount(value?: number) {
+  return value === undefined ? "\u2014" : value.toLocaleString("en-US");
+}
+
+function MethodTable({ title, methods }: { title: string; methods: PaymentMethod[] }) {
+  if (methods.length === 0) return null;
+  return (
+    <div className="rounded-xl border border-zinc-200 bg-zinc-50 px-5 py-4">
+      <div className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500">
+        {title}
+      </div>
+      <table className="w-full text-sm">
+        <thead>
+          <tr className="text-xs text-zinc-400">
+            <th className="pb-1 text-left font-medium">Method</th>
+            <th className="pb-1 text-right font-medium">Min</th>
+            <th className="pb-1 text-right font-medium">Max</th>
+          </tr>
+        </thead>
+        <tbody>
+          {methods.map((m) => (
+            <tr key={`${m.method}-${m.unit}`} className="border-t border-zinc-200">
+              <td className="py-1.5 text-zinc-700">
+                {METHOD_LABELS[m.method] ?? m.method}
+              </td>
+              <td className="py-1.5 text-right tabular-nums text-zinc-600">
+                {formatAmount(m.min_amount)} {m.unit}
+              </td>
+              <td className="py-1.5 text-right tabular-nums text-zinc-600">
+                {formatAmount(m.max_amount)} {m.unit}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 function StatusDot({ status }: { status: MintStatus }) {
   const colors: Record<MintStatus, string> = {
     loading: "bg-yellow-400",
@@ -73,13 +124,18 @@ const MINT_CARDS: MintCard[] = [
 export default function MintSection() {
   const [status, setStatus] = useState<MintStatus>("loading");
   const [lndStatus, setLndStatus] = useState<MintStatus>("loading");
+  const [mintMethods, setMintMethods] = useState<PaymentMethod[]>([]);
+  const [meltMethods, setMeltMethods] = useState<PaymentMethod[]>([]);
 
   useEffect(() => {
     let cancelled = false;
     fetch("/api/mint-status")
       .then((res) => res.json())
       .then((data) => {
-        if (!cancelled) setStatus(data.ok ? "operational" : "unavailable");
+        if (cancelled) return;
+        setStatus(data.ok ? "operational" : "unavailable");
+        setMintMethods(data.mint ?? []);
+        setMeltMethods(data.melt ?? []);
       })
       .catch(() => {
         if (!cancelled) setStatus("unavailable");
@@ -123,6 +179,14 @@ export default function MintSection() {
             <span className="text-xs text-zinc-400">Lightning node</span>
             <StatusDot status={lndStatus} />
           </div>
+
+          {/* Supported payment methods */}
+          {(mintMethods.length > 0 || meltMethods.length > 0) && (
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <MethodTable title="Minting (deposits)" methods={mintMethods} />
+              <MethodTable title="Melting (withdrawals)" methods={meltMethods} />
+            </div>
+          )}
         </div>
 
         {/* Cards */}
