@@ -111,7 +111,7 @@ const MINT_CARDS: MintCard[] = [
     imageClass: "h-full object-contain w-full",
   },
   {
-    title: "₿ lightning and onchain",
+    title: "Lightning and on-chain reserves",
     text: "The mint is backed by the Bitcoin Lightning and on-chain funds, enabling seamless in-and-out conversion between ecash, onchain and Lightning payments at any time.",
     link: { label: "Minibits Lightning node", href: "https://www.amboss.space/node/0330974249e7f1d9f515e04af3bc664b2e924641de53bb43fb9efe3fa6edf0e2ae" },
     image: "/img/lightning_network.png",
