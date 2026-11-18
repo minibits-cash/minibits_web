@@ -7,6 +7,9 @@ const withMDX = createMDX({
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+  experimental: {
+    agentUpgrade: "security",
+  },
   turbopack: {
     root: __dirname,
   },
