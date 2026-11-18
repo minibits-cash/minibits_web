@@ -9,13 +9,7 @@ export const metadata: Metadata = {
     "Withdraw small amounts from LiteBits straight into Minibits, a free Bitcoin ecash wallet. No sign up.",
 };
 
-const STEPS = [
-  { icon: "📲", text: "Install Minibits" },
-  { icon: "⚡", text: "Tap Withdraw in LiteBits" },
-  { icon: "🔗", text: "Open the link in Minibits" },
-];
-
-const PERKS = ["Free", "No sign up", "Tiny amounts OK"];
+const PERKS = ["Free", "No sign up", "Lightning address"];
 
 export default function LiteBitsPage() {
   return (
@@ -42,54 +36,47 @@ export default function LiteBitsPage() {
               <span className="bg-gradient-to-r from-[#FFD700] to-[#FF8C00] bg-clip-text text-transparent">
                 LiteBits
               </span>{" "}
-              sats.
-              <br />
-              <span style={{ color: "#599D52" }}>Keep them as ecash.</span>
+              sats to <span style={{ color: "#599D52" }}>Minibits</span> wallet.
             </h1>
 
             <p className="mb-6 text-lg text-zinc-300">
-              Minibits is a free Bitcoin wallet made for small amounts. Receive, keep and send sats in seconds.
+              Minibits is a Bitcoin Lightning and ecash wallet with instant, low-cost, and private payments.
             </p>
 
-            <ul className="mb-8 flex flex-wrap justify-center gap-2 lg:justify-start">
+            <ul className="mb-10 flex flex-wrap justify-center gap-3 lg:justify-start">
               {PERKS.map((p) => (
                 <li
                   key={p}
-                  className="rounded-full border border-[#599D52]/40 bg-[#599D52]/10 px-3 py-1 text-sm font-medium text-[#8fd387]"
+                  className="rounded-full border border-[#599D52]/40 bg-[#599D52]/10 px-5 py-2 text-base font-semibold text-[#8fd387] sm:text-lg"
                 >
                   ✓ {p}
                 </li>
               ))}
             </ul>
 
-            {/* Steps */}
-            <ol className="mb-10 grid w-full grid-cols-3 gap-3">
-              {STEPS.map((s, i) => (
-                <li
-                  key={s.text}
-                  className="flex flex-col items-center gap-2 rounded-2xl border border-zinc-800 bg-zinc-900/70 p-3 text-center backdrop-blur-sm"
-                >
-                  <span className="text-2xl" aria-hidden>{s.icon}</span>
-                  <span className="text-xs font-semibold text-[#3680FA]">{i + 1}</span>
-                  <span className="text-sm leading-snug text-zinc-200">{s.text}</span>
-                </li>
-              ))}
-            </ol>
-
             {/* Store buttons */}
-            <div className="mb-6 flex flex-wrap justify-center gap-3 lg:justify-start">
-              {STORE_LINKS.map((store) => (
-                <a
-                  key={store.label}
-                  href={store.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center gap-2.5 rounded-xl border ${store.border} ${store.bg} px-5 py-3 text-sm font-medium text-zinc-100 transition-all duration-200 hover:scale-105 hover:shadow-lg`}
-                >
-                  {store.icon}
-                  {store.label}
-                </a>
-              ))}
+            <div className="relative mb-8 w-full">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-[radial-gradient(ellipse_at_center,rgba(255,170,0,0.22),transparent_70%)] blur-xl"
+              />
+              <p className="relative mb-4 text-sm font-semibold uppercase tracking-widest text-[#FFC233]">
+                Download free
+              </p>
+              <div className="relative flex flex-wrap justify-center gap-3 lg:justify-start">
+                {STORE_LINKS.filter((s) => s.label !== "FreedomStore").map((store) => (
+                  <a
+                    key={store.label}
+                    href={store.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-2xl border border-[#FFB000]/50 bg-zinc-900 px-6 py-4 text-base font-semibold text-zinc-100 shadow-[0_0_24px_-4px_rgba(255,170,0,0.45)] transition-all duration-200 hover:scale-105 hover:border-[#FFB000] hover:shadow-[0_0_36px_-2px_rgba(255,170,0,0.7)] [&_svg]:h-5 [&_svg]:w-5"
+                  >
+                    {store.icon}
+                    {store.label}
+                  </a>
+                ))}
+              </div>
             </div>
 
             <a href="/" className="text-sm text-zinc-500 underline-offset-4 transition hover:text-zinc-300 hover:underline">
