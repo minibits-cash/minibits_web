@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import { STORE_LINKS } from "@/components/storeLinks";
+import WithdrawFlow, { StepLabel } from "./WithdrawFlow";
 
 export const metadata: Metadata = {
   title: "Minibits × LiteBits — Withdraw your sats as ecash",
@@ -16,7 +17,7 @@ export default function LiteBitsPage() {
     <>
       <main className="animated-grid-bg min-h-svh">
         <div className="gradient-overlay" />
-        <div className="relative z-10 mx-auto flex min-h-svh max-w-6xl flex-col items-center justify-center gap-12 px-4 py-12 sm:px-6 lg:flex-row lg:gap-16">
+        <div className="relative z-10 mx-auto flex min-h-svh max-w-6xl flex-col items-center justify-center gap-12 px-4 py-12 sm:px-6 lg:flex-row lg:items-start lg:gap-16">
           {/* Left: message + CTA */}
           <div className="flex max-w-xl flex-col items-center text-center lg:items-start lg:text-left">
             {/* Logos */}
@@ -55,14 +56,12 @@ export default function LiteBitsPage() {
             </ul>
 
             {/* Store buttons */}
-            <div className="relative mb-8 w-full">
+            <div className="relative mb-10 w-full">
               <div
                 aria-hidden
                 className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-[radial-gradient(ellipse_at_center,rgba(255,170,0,0.22),transparent_70%)] blur-xl"
               />
-              <p className="relative mb-4 text-sm font-semibold uppercase tracking-widest text-[#FFC233]">
-                Download free
-              </p>
+              <StepLabel n={1}>Download and install</StepLabel>
               <div className="relative flex flex-wrap justify-center gap-3 lg:justify-start">
                 {STORE_LINKS.filter((s) => s.label !== "FreedomStore").map((store) => (
                   <a
@@ -77,6 +76,10 @@ export default function LiteBitsPage() {
                   </a>
                 ))}
               </div>
+            </div>
+
+            <div className="mb-8 w-full">
+              <WithdrawFlow />
             </div>
 
             <a href="/" className="text-sm text-zinc-500 underline-offset-4 transition hover:text-zinc-300 hover:underline">
